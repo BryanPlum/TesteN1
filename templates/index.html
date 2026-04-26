@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🔐 Acesso ao Sistema</h2>
+    <p>Digite seu e-mail para receber o código</p>
+
+    <form method="POST">
+        <input type="email" name="email" placeholder="seu@email.com" required>
+        <button type="submit">Receber código</button>
+    </form>
+
+    <div class="footer">
+        Security Operations Center
+    </div>
+</div>
+
+</body>
+</html>

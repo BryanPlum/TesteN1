@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificação</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🔑 Verificação</h2>
+    <p>Digite o código enviado para seu e-mail</p>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST">
+        <input name="code" placeholder="Código" required>
+        <button type="submit">Validar</button>
+    </form>
+
+    <a href="/resend" class="link">Reenviar código</a>
+
+    <div class="footer">
+        Security Operations Center
+    </div>
+</div>
+
+</body>
+</html>
