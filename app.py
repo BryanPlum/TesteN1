@@ -1,56 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-import random
-import smtplib
-import os
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from dotenv import load_dotenv
 
-# carregar variáveis de ambiente
-load_dotenv()
+from services.email_service import send_email
+from services.auth_service import generate_code, validate_password, hash_password, check_password
+from services.db_service import init_db, save_user, get_user
 
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
 
-# armazenamento temporário
 codes_db = {}
 
-SMTP_USER = os.getenv("SMTP_USER")
-SMTP_PASS = os.getenv("SMTP_PASS")
-
-
-def generate_code():
-    return str(random.randint(100000, 999999))
-
-
-def send_email(to_email, code):
-    msg = MIMEMultipart()
-    msg["From"] = SMTP_USER
-    msg["To"] = to_email
-    msg["Subject"] = "[SOC] Código de verificação"
-
-    body = f"""
-Olá,
-
-Seu código de verificação é: {code}
-
-Se não foi você, ignore este e-mail.
-
---
-Security Operations Center
-"""
-
-    msg.attach(MIMEText(body, "plain"))
-
-    try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login(SMTP_USER, SMTP_PASS)
-            server.send_message(msg)
-
-        print(f"[OK] E-mail enviado para {to_email}")
-
-    except Exception as e:
-        print("[ERRO] Falha ao enviar e-mail:", e)
+init_db()
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -58,15 +17,14 @@ def index():
     if request.method == "POST":
         email = request.form.get("email")
 
-        if email:
-            code = generate_code()
-            codes_db[email] = code
+        code = generate_code()
+        codes_db[email] = code
 
-            send_email(email, code)
+        send_email(email, code)
 
-            session["email"] = email
+        session["email"] = email
 
-            return redirect(url_for("verify"))
+        return redirect(url_for("verify"))
 
     return render_template("index.html")
 
@@ -79,24 +37,54 @@ def verify():
         user_code = request.form.get("code")
 
         if codes_db.get(email) == user_code:
-            return "Código validado com sucesso!"
-        else:
-            return render_template("verify.html", error="Código inválido!")
+            return redirect(url_for("create_password"))
+
+        return render_template("verify.html", error="Código inválido")
 
     return render_template("verify.html")
 
 
-@app.route("/resend")
-def resend():
+@app.route("/create-password", methods=["GET", "POST"])
+
+def create_password():
     email = session.get("email")
 
-    if email:
-        code = generate_code()
-        codes_db[email] = code
-        send_email(email, code)
+    if request.method == "POST":
+        password = request.form.get("password")
+        confirm = request.form.get("confirm")
 
-    return redirect(url_for("verify"))
+        error = validate_password(password)
 
+        if error:
+            return render_template("create_password.html", error=error)
+
+        if password != confirm:
+            return render_template("create_password.html", error="Senhas não coincidem")
+
+        hashed = hash_password(password)
+        save_user(email, hashed)
+
+        return redirect(url_for("login"))
+
+    return render_template("create_password.html")
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        stored_password = get_user(email)
+
+        if not stored_password:
+            return render_template("login.html", error="Usuário não encontrado")
+
+        if not check_password(password, stored_password):
+            return render_template("login.html", error="Senha inválida")
+
+        return "Login realizado com sucesso! (próxima etapa: incidente)"
+
+    return render_template("login.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
