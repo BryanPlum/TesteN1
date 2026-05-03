@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Exploit Simples{% endblock %}
+
+{% block content %}
+
+<h2>🚨 Possível Exploração Web</h2>
+
+<h3>📌 Contexto</h3>
+<p>
+Após a divulgação de uma vulnerabilidade, o servidor web apresentou atividades suspeitas.
+Analise os dados abaixo.
+</p>
+<p>
+    🔎 OSINT do IP:
+    <a href="{{ url_for('serve_resource', filename='virustotal01.pdf') }}" target="_blank" class="btn-alert">
+        Abra o relatório sobre o IP no VirusTotal
+    </a>
+</p>
+
+<h3>🧾 Informações</h3>
+<pre>
+Sistema: Web Server Interno
+Divulgação: 10:00
+</pre>
+
+<h3>🌐 Logs de acesso</h3>
+<pre>
+10:15:23 - 45.153.34.205 - GET /index.php?id=1
+10:16:02 - 45.153.34.205 - GET /index.php?id=1 OR 1=1
+10:16:05 - 45.153.34.205 - GET /index.php?id=1; ls
+10:16:06 - 200 OK
+10:17:10 - 10.0.0.5 - POST /upload.php
+10:17:12 - 200 OK
+</pre>
+
+<h3>💻 Evento adicional</h3>
+<pre>
+Arquivo criado: shell.php
+Local: /var/www/html
+</pre>
+
+<hr>
+
+<h3>🧠 Perguntas</h3>
+
+{% if success %}
+    <div class="success">{{ success }}</div>
+{% endif %}
+
+{% if error %}
+    <div class="error">{{ error }}</div>
+{% endif %}
+
+<form method="POST">
+
+    <!-- PERGUNTA 1 -->
+    <p><strong>1. O Status 200 (ok) indica sucesso?</strong></p>
+
+    <label>
+        <input type="radio" name="answer1" value="A" required>
+        A) Não indica sucesso
+    </label><br>
+
+    <label>
+        <input type="radio" name="answer1" value="B">
+        B) Indica que a requisição foi processada com sucesso
+    </label><br>
+
+    <label>
+        <input type="radio" name="answer1" value="C">
+        C) Indica erro no servidor
+    </label><br>
+
+    <br>
+
+    <!-- PERGUNTA 2 -->
+    <p><strong>2. Com base no relatório OSINT, você bloquearia o IP imediatamente?</strong></p>
+
+    <label>
+        <input type="radio" name="answer2" value="A" required>
+        A) Sim, há indícios claros de atividade maliciosa
+    </label><br>
+
+    <label>
+        <input type="radio" name="answer2" value="B">
+        B) Não há evidências suficientes
+    </label><br>
+
+    <label>
+        <input type="radio" name="answer2" value="C">
+        C) Apenas monitoraria
+    </label><br>
+
+    <br>
+
+    <button type="submit">Enviar respostas</button>
+
+</form>
+
+
+{% endblock %}
+

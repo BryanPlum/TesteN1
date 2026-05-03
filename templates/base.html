@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Plataforma SOC{% endblock %}</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- 🔝 NAVBAR FIXA -->
+    <header class="navbar">
+        <div class="nav-left">
+            <span>👤 {{ user }}</span>
+        </div>
+
+        <div class="nav-right">
+            <a href="{{ url_for('logout') }}" class="btn-logout">Sair</a>
+        </div>
+        
+    </header>
+    <br>
+    <!-- 📦 CONTEÚDO PRINCIPAL -->
+    <div class="main-content">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

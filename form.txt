@@ -1,0 +1,80 @@
+
+<div class="card bg-dark text-light shadow mt-4">
+    <div class="card-body">
+
+        <h4 class="mb-3">🧠 Perguntas</h4>
+
+        {% if success %}
+            <div class="alert alert-success">{{ success }}</div>
+        {% endif %}
+
+        {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+
+            <!-- PERGUNTA 1 -->
+            <div class="mb-4">
+                <label class="form-label">
+                    <strong>1. O Status 200 (ok) indica sucesso?</strong>
+                </label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="answer1" value="A" required>
+                    <label class="form-check-label">
+                        A) Não indica sucesso
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="answer1" value="B">
+                    <label class="form-check-label">
+                        B) Indica que a requisição foi processada com sucesso
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="answer1" value="C">
+                    <label class="form-check-label">
+                        C) Indica erro no servidor
+                    </label>
+                </div>
+            </div>
+
+            <!-- PERGUNTA 2 -->
+            <div class="mb-4">
+                <label class="form-label">
+                    <strong>2. Com base no relatório OSINT, você bloquearia o IP imediatamente?</strong>
+                </label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="answer2" value="A" required>
+                    <label class="form-check-label">
+                        A) Sim, há indícios claros de atividade maliciosa
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="answer2" value="B">
+                    <label class="form-check-label">
+                        B) Não há evidências suficientes
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="answer2" value="C">
+                    <label class="form-check-label">
+                        C) Apenas monitoraria
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+                Enviar respostas
+            </button>
+
+        </form>
+
+    </div>
+</div>

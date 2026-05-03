@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<h2 style="text-align:center;">📊 Painel de Incidentes</h2>
+
+<div style="display:flex; justify-content:center; gap:30px; margin-top:40px; flex-wrap:wrap;">
+
+    <!-- CASE 1 -->
+    <div style="background:#111827; padding:20px; border-radius:10px; width:300px; box-shadow:0 0 15px rgba(0,0,0,0.4);">
+        <h3>🚨 Public to Private Exploit</h3>
+        <p>Análise de possível exploração após divulgação pública.</p>
+        <a href="/case1" class="link">Acessar caso</a>
+    </div>
+
+    <!-- CASE 2 -->
+    <div style="background:#111827; padding:20px; border-radius:10px; width:300px; box-shadow:0 0 15px rgba(0,0,0,0.4);">
+        <h3>🌍 Login Location Anomaly</h3>
+        <p>Login suspeito por localização incomum.</p>
+        <a href="/case2" class="link">Acessar caso</a>
+    </div>
+
+    <!-- CASE 3 -->
+    <div style="background:#111827; padding:20px; border-radius:10px; width:300px; box-shadow:0 0 15px rgba(0,0,0,0.4);">
+        <h3>🚨 Public to Private Exploit - HARD</h3>
+        <p>Login suspeito por localização incomum.</p>
+        <a href="/case3" class="link">Acessar caso</a>
+    </div>
+
+</div>
+
+{% endblock %}

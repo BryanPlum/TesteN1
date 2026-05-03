@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
 </head>
 
 <body>
@@ -21,7 +21,9 @@
         <input type="password" name="password" placeholder="Senha" required>
         <button type="submit">Entrar</button>
     </form>
-
+    <a href="{{ url_for('forgot_password') }}" class="link">
+        Esqueci minha senha
+    </a>
     <div class="footer">
         Security Operations Center
     </div>
