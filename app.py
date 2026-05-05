@@ -180,7 +180,7 @@ def dashboard():
 #______ROTA LOGOUT______________
 @app.route("/logout")
 def logout():
-    session.clear()
+    session.clear()  # remove tudo da sessão
     return redirect(url_for("login"))
 
 

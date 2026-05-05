@@ -4,29 +4,28 @@
 
 {% block content %}
 
-<h2 style="text-align:center;">📊 Painel de Incidentes</h2>
+<h3 class="mb-4">📊 Painel de Incidentes</h3>
 
-<div style="display:flex; justify-content:center; gap:30px; margin-top:40px; flex-wrap:wrap;">
+<div class="row">
 
-    <!-- CASE 1 -->
-    <div style="background:#111827; padding:20px; border-radius:10px; width:300px; box-shadow:0 0 15px rgba(0,0,0,0.4);">
-        <h3>🚨 Public to Private Exploit</h3>
-        <p>Análise de possível exploração após divulgação pública.</p>
-        <a href="/case1" class="link">Acessar caso</a>
+    <div class="col-md-6">
+        <div class="card bg-secondary text-light mb-3">
+            <div class="card-body">
+                <h5>🚨 Exploit Anomaly</h5>
+                <p>Análise de exploração web</p>
+                <a href="/case1" class="btn btn-danger">Abrir</a>
+            </div>
+        </div>
     </div>
 
-    <!-- CASE 2 -->
-    <div style="background:#111827; padding:20px; border-radius:10px; width:300px; box-shadow:0 0 15px rgba(0,0,0,0.4);">
-        <h3>🌍 Login Location Anomaly</h3>
-        <p>Login suspeito por localização incomum.</p>
-        <a href="/case2" class="link">Acessar caso</a>
-    </div>
-
-    <!-- CASE 3 -->
-    <div style="background:#111827; padding:20px; border-radius:10px; width:300px; box-shadow:0 0 15px rgba(0,0,0,0.4);">
-        <h3>🚨 Public to Private Exploit - HARD</h3>
-        <p>Login suspeito por localização incomum.</p>
-        <a href="/case3" class="link">Acessar caso</a>
+    <div class="col-md-6">
+        <div class="card bg-secondary text-light mb-3">
+            <div class="card-body">
+                <h5>🌍 Login Anomaly</h5>
+                <p>Login suspeito por localização</p>
+                <a href="/case2" class="btn btn-warning">Abrir</a>
+            </div>
+        </div>
     </div>
 
 </div>

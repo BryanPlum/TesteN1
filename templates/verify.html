@@ -1,32 +1,33 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Verificação</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block title %}Verificação{% endblock %}
 
-<div class="container">
-    <h2>🔑 Verificação</h2>
-    <p>Digite o código enviado para seu e-mail</p>
+{% block content %}
 
-    {% if error %}
-        <div class="error">{{ error }}</div>
-    {% endif %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
 
-    <form method="POST">
-        <input name="code" placeholder="Código" required>
-        <button type="submit">Validar</button>
-    </form>
+        <div class="card bg-secondary text-light shadow">
+            <div class="card-body">
 
-    <a href="/resend" class="link">Reenviar código</a>
+                <h4 class="mb-3">Verificação de Código</h4>
 
-    <div class="footer">
-        Security Operations Center
+                <form method="POST">
+                    <div class="mb-3">
+                        <input name="code" class="form-control" placeholder="Digite o código" required>
+                    </div>
+
+                    <button class="btn btn-success w-100">Validar</button>
+                </form>
+
+                <a href="/resend" class="btn btn-warning w-100 mt-2">
+                    Reenviar código
+                </a>
+
+            </div>
+        </div>
+
     </div>
 </div>
 
-</body>
-</html>
+{% endblock %}

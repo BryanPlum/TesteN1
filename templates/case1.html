@@ -4,28 +4,31 @@
 
 {% block content %}
 
-<h2>🚨 Possível Exploração Web</h2>
+<h2 class="mb-3">🚨 Possível Exploração Web</h2>
 
 <h3>📌 Contexto</h3>
 <p>
 Após a divulgação de uma vulnerabilidade, o servidor web apresentou atividades suspeitas.
 Analise os dados abaixo.
 </p>
+
 <p>
     🔎 OSINT do IP:
-    <a href="{{ url_for('serve_resource', filename='virustotal01.pdf') }}" target="_blank" class="btn-alert">
-        Abra o relatório sobre o IP no VirusTotal
+    <a href="{{ url_for('serve_resource', filename='virustotal01.pdf') }}" 
+       target="_blank" 
+       class="btn btn-danger btn-sm">
+        Abrir relatório no VirusTotal
     </a>
 </p>
 
 <h3>🧾 Informações</h3>
-<pre>
+<pre class="bg-black text-light p-3 rounded">
 Sistema: Web Server Interno
 Divulgação: 10:00
 </pre>
 
 <h3>🌐 Logs de acesso</h3>
-<pre>
+<pre class="bg-black text-light p-3 rounded">
 10:15:23 - 45.153.34.205 - GET /index.php?id=1
 10:16:02 - 45.153.34.205 - GET /index.php?id=1 OR 1=1
 10:16:05 - 45.153.34.205 - GET /index.php?id=1; ls
@@ -35,7 +38,7 @@ Divulgação: 10:00
 </pre>
 
 <h3>💻 Evento adicional</h3>
-<pre>
+<pre class="bg-black text-light p-3 rounded">
 Arquivo criado: shell.php
 Local: /var/www/html
 </pre>
@@ -45,11 +48,11 @@ Local: /var/www/html
 <h3>🧠 Perguntas</h3>
 
 {% if success %}
-    <div class="success">{{ success }}</div>
+    <div class="alert alert-success">{{ success }}</div>
 {% endif %}
 
 {% if error %}
-    <div class="error">{{ error }}</div>
+    <div class="alert alert-danger">{{ error }}</div>
 {% endif %}
 
 <form method="POST">
@@ -57,47 +60,59 @@ Local: /var/www/html
     <!-- PERGUNTA 1 -->
     <p><strong>1. O Status 200 (ok) indica sucesso?</strong></p>
 
-    <label>
-        <input type="radio" name="answer1" value="A" required>
-        A) Não indica sucesso
-    </label><br>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="answer1" value="A" required>
+        <label class="form-check-label">
+            A) Não indica sucesso
+        </label>
+    </div>
 
-    <label>
-        <input type="radio" name="answer1" value="B">
-        B) Indica que a requisição foi processada com sucesso
-    </label><br>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="answer1" value="B">
+        <label class="form-check-label">
+            B) Indica que a requisição foi processada com sucesso
+        </label>
+    </div>
 
-    <label>
-        <input type="radio" name="answer1" value="C">
-        C) Indica erro no servidor
-    </label><br>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="answer1" value="C">
+        <label class="form-check-label">
+            C) Indica erro no servidor
+        </label>
+    </div>
 
     <br>
 
     <!-- PERGUNTA 2 -->
     <p><strong>2. Com base no relatório OSINT, você bloquearia o IP imediatamente?</strong></p>
 
-    <label>
-        <input type="radio" name="answer2" value="A" required>
-        A) Sim, há indícios claros de atividade maliciosa
-    </label><br>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="answer2" value="A" required>
+        <label class="form-check-label">
+            A) Sim, há indícios claros de atividade maliciosa
+        </label>
+    </div>
 
-    <label>
-        <input type="radio" name="answer2" value="B">
-        B) Não há evidências suficientes
-    </label><br>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="answer2" value="B">
+        <label class="form-check-label">
+            B) Não há evidências suficientes
+        </label>
+    </div>
 
-    <label>
-        <input type="radio" name="answer2" value="C">
-        C) Apenas monitoraria
-    </label><br>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="answer2" value="C">
+        <label class="form-check-label">
+            C) Apenas monitoraria
+        </label>
+    </div>
 
     <br>
 
-    <button type="submit">Enviar respostas</button>
+    <button type="submit" class="btn btn-primary w-100">
+        Enviar respostas
+    </button>
 
 </form>
 
-
 {% endblock %}
-

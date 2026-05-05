@@ -1,28 +1,36 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block title %}Acesso{% endblock %}
 
-<div class="container">
-    <h2>🔐 Acesso ao Sistema</h2>
-    <p>Digite seu e-mail para receber o código</p>
+{% block content %}
 
-    <form method="POST">
-        <input type="email" name="email" placeholder="seu@email.com" required>
-        <button type="submit">Receber código</button>
-    </form>
-    <a href="{{ url_for('login') }}" class="link">
-        Já tenho conta → Fazer login
-    </a>
-    <div class="footer">
-        Security Operations Center
+<div class="row justify-content-center">
+    <div class="col-md-6">
+
+        <div class="card bg-secondary text-light shadow">
+            <div class="card-body">
+
+                <h4 class="mb-3">Acesso ao Sistema</h4>
+
+                <form method="POST">
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+
+                    <button class="btn btn-primary w-100">Enviar código</button>
+                </form>
+
+                <hr>
+
+                <a href="{{ url_for('login') }}" class="btn btn-outline-light w-100">
+                    Já tenho login
+                </a>
+
+            </div>
+        </div>
+
     </div>
 </div>
 
-</body>
-</html>
+{% endblock %}

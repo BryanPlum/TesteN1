@@ -1,33 +1,41 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block title %}Login{% endblock %}
 
-<div class="container">
-    <h2>🔐 Login</h2>
-    <p>Entre com seu e-mail e senha</p>
+{% block content %}
 
-    {% if error %}
-        <div class="error">{{ error }}</div>
-    {% endif %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
 
-    <form method="POST">
-        <input type="email" name="email" placeholder="E-mail" required>
-        <input type="password" name="password" placeholder="Senha" required>
-        <button type="submit">Entrar</button>
-    </form>
-    <a href="{{ url_for('forgot_password') }}" class="link">
-        Esqueci minha senha
-    </a>
-    <div class="footer">
-        Security Operations Center
+        <div class="card bg-secondary text-light shadow">
+            <div class="card-body">
+
+                <h4 class="mb-3">Login</h4>
+
+                {% if error %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+
+                <form method="POST">
+
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Senha</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+
+                    <button class="btn btn-primary w-100">Entrar</button>
+
+                </form>
+
+            </div>
+        </div>
+
     </div>
 </div>
 
-</body>
-</html>
+{% endblock %}
